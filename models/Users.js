@@ -5,15 +5,17 @@ const UsersSchema = new Schema(
         username: {
             type: String,
             trim: true,
+            unique: true,
             required: 'Username is Required'
           },
 
-         email: {
-              type: String,
-              unique: true,
-              match: [/.+@.+\..+/]
+          email: {
+            type: String,
+            required: true,
+            unique: true,
+            match: [/.+\@.+\..+/],
          },
-         
+
         thoughts: [{
             type: Schema.Types.ObjectId,
             ref: 'Thoughts'
