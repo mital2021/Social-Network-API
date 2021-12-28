@@ -8,6 +8,22 @@ const UsersSchema = new Schema(
             required: true,
             trim: true
         },
+
+
+        username: {
+            type: String,
+            lowercase: true,
+            trim: true,
+            index: true,
+            unique: true,
+            required: true
+        },
+
+
+
+
+
+
         email: {
             type: String,
             required: true,
