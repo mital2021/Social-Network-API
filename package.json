@@ -20,8 +20,6 @@
   "dependencies": {
     "@types/mongoose": "^5.11.97",
     "express": "^4.17.2",
-    "moment": "^2.29.1",
-    "mongoose": "^5.13.14",
-    "mongoose-unique-validator": "^3.0.0"
+    "mongoose": "^5.13.14"
   }
 }
