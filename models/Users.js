@@ -1,15 +1,8 @@
 const { Schema, model } = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const UsersSchema = new Schema(
     {
-        username: {
-            type: String,
-            unique: true,
-            required: true,
-            trim: true
-        },
-
-
         username: {
             type: String,
             lowercase: true,
@@ -19,16 +12,13 @@ const UsersSchema = new Schema(
             required: true
         },
 
-
-
-
-
-
         email: {
             type: String,
-            required: true,
+            lowercase: true,
+            trim: true,
+            index: true,
             unique: true,
-            match: [/.+\@.+\..+/],
+            required: true
         },
         thoughts: [{
             type: Schema.Types.ObjectId,
@@ -48,7 +38,10 @@ const UsersSchema = new Schema(
     }
 );
 
-
+UsersSchema.plugin(uniqueValidator, {
+    type: 'mongoose-unique-validator',
+    message: 'Error, expected {PATH} to be unique.'
+});
 UsersSchema.virtual('friendCount').get(function() {
     return this.friends.length;
 });
