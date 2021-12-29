@@ -4,7 +4,7 @@ const thoughtsController = {
     createThoughts({params, body}, res) {
         Thoughts.create(body)
             .then(({_id}) => {
-                return Users.findOneAndUpdate({ _id: params.userId}, 
+                return Users.findOneAndUpdate({ _id: body.userId}, 
                     {$push: {thoughts: _id}}, {new: true});
             })
             .then(dbThoughtsData => {
@@ -21,7 +21,7 @@ const thoughtsController = {
     getAllThoughts(req,res) {
         Thoughts.find({})
             .populate({
-                path: 'reactions',
+                path: 'thoughts',
                 select: '-__v'
             })
             .select('-__v')
@@ -55,7 +55,7 @@ const thoughtsController = {
 
   
     updateThoughts({params, body}, res) {
-        Thoughts.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
+        Thoughts.findOneAndUpdate({_id: params.thoughtId}, body, {new: true, runValidators: true})
             .populate({
                 path: 'reactions',
                 select: '-__v'
