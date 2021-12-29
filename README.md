@@ -18,7 +18,7 @@ It's an application that builds an API for a social network web application wher
 
 # Screenshot of my application
 
-![](./assets/image/teamprofile.png)
+![](./assets/image/pic1.png)
 
 
 
